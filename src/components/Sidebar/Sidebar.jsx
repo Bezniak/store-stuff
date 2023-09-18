@@ -7,12 +7,14 @@ import styles from "../../styles/Sidebar.module.css";
 const Sidebar = () => {
     const { list } = useSelector(({ categories }) => categories);
 
+    const listLimit = list.filter((_, i) => i < 8);
+
     return (
         <section className={styles.sidebar}>
             <div className={styles.title}>CATEGORIES</div>
             <nav>
                 <ul className={styles.menu}>
-                    {list.map(({ id, name }) => (
+                    {listLimit.map(({ id, name }) => (
                         <li key={id}>
                             <NavLink
                                 className={({ isActive }) =>
