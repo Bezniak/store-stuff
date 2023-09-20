@@ -23,7 +23,7 @@ const Header = () => {
     useEffect(() => {
         if (!currentUser) return;
 
-        setValues(currentUser);
+         setValues(currentUser);
 
     }, [currentUser]);
 

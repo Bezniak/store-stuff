@@ -17,8 +17,7 @@ const Products = ({title, style = {}, products = [], amount}) => {
 
                         <div
                             className={styles.image}
-                            style={{backgroundImage: `url(${images[0]})`}}  // API Error with images
-                            // style={{ backgroundImage:  (!images.status) ? `url(${bed})` : `url(${images[0]})` }}
+                            style={{backgroundImage: `url(${images[0]})`}}
                         />
 
                         <div className={styles.wrapper}>
@@ -27,7 +26,7 @@ const Products = ({title, style = {}, products = [], amount}) => {
                             <div className={styles.info}>
                                 <div className={styles.price}>{price}$</div>
                                 <div className={styles.oldPrice}>
-                                    {Math.floor(price * 0.8)}$
+                                    {Math.floor(price * 1.2)}$
                                 </div>
                             </div>
                             <div className={styles.purchases}>

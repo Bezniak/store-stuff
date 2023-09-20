@@ -17,7 +17,6 @@ const Product = (item) => {
 
     const [currentImage, setCurrentImage] = useState();
     const [currentSize, setCurrentSize] = useState();
-    const [favoritesSize, setFavoritesSize] = useState();
 
     useEffect(() => {
         if (!images.length) return;
