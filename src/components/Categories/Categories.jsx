@@ -15,7 +15,7 @@ const Categories = ({title, products = [], amount}) => {
                     <Link to={`/categories/${id}`} key={id} className={styles.item}>
                         <div
                             className={styles.image}
-                            style={{backgroundImage: `url(${image})`}}  //API Error with image
+                            style={{backgroundImage: `url(${image})`}}
                         />
                         <h3 className={styles.title}>{name}</h3>
                     </Link>

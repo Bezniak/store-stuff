@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {BASE_URL} from "../utils/constants";
 
@@ -47,7 +47,7 @@ export const updateUser = createAsyncThunk(
     }
 );
 
-const addCurrentUser = (state, { payload }) => {
+const addCurrentUser = (state, {payload}) => {
     state.currentUser = payload;
 };
 
@@ -59,29 +59,47 @@ const userSlice = createSlice({
         isLoading: false,
         formType: "signup",
         showForm: false,
+        favorites: [],
     },
     reducers: {
-        addItemToCart: (state, { payload }) => {
+        addItemToCart: (state, {payload}) => {
             let newCart = [...state.cart];
-            const found = state.cart.find(({ id }) => id === payload.id);
+            const found = state.cart.find(({id}) => id === payload.id);
 
             if (found) {
                 newCart = newCart.map((item) => {
                     return item.id === payload.id
-                        ? { ...item, quantity: payload.quantity || item.quantity + 1 }
+                        ? {...item, quantity: payload.quantity || item.quantity + 1}
                         : item;
                 });
-            } else newCart.push({ ...payload, quantity: 1 });
+            } else newCart.push({...payload, quantity: 1});
 
             state.cart = newCart;
         },
-        removeItemFromCart: (state, { payload }) => {
-            state.cart = state.cart.filter(({ id }) => id !== payload);
+        removeItemFromCart: (state, {payload}) => {
+            state.cart = state.cart.filter(({id}) => id !== payload);
         },
-        toggleForm: (state, { payload }) => {
+        addItemToFavorites: (state, {payload}) => {
+            let newFavorites = [...state.favorites];
+            const found = state.favorites.find(({id}) => id === payload.id);
+
+            if (found) {
+                newFavorites = newFavorites.map((item) => {
+                    return item.id === payload.id
+                        ? {...item, quality: payload.quantity || item.quantity + 1}
+                        : item;
+                });
+            } else newFavorites.push({...payload})
+
+            state.favorites = newFavorites;
+        },
+        removeItemFromFavorites: (state, {payload}) => {
+            state.favorites = state.favorites.filter(({id}) => id !== payload);
+        },
+        toggleForm: (state, {payload}) => {
             state.showForm = payload;
         },
-        toggleFormType: (state, { payload }) => {
+        toggleFormType: (state, {payload}) => {
             state.formType = payload;
         },
     },
@@ -92,7 +110,13 @@ const userSlice = createSlice({
     },
 });
 
-export const { addItemToCart, removeItemFromCart, toggleForm, toggleFormType } =
-    userSlice.actions;
+export const {
+    addItemToCart,
+    removeItemFromCart,
+    toggleForm,
+    toggleFormType,
+    removeItemFromFavorites,
+    addItemToFavorites
+} = userSlice.actions;
 
 export default userSlice.reducer;

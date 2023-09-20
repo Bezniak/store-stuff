@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { ROUTES } from "../../utils/routes";
 
 import styles from "../../styles/Product.module.css";
-import {addItemToCart} from "../../user/userSlice";
+import {addItemToCart, addItemToFavorites} from "../../user/userSlice";
 
 
 const SIZES = [4, 4.5, 5];
@@ -17,6 +17,7 @@ const Product = (item) => {
 
     const [currentImage, setCurrentImage] = useState();
     const [currentSize, setCurrentSize] = useState();
+    const [favoritesSize, setFavoritesSize] = useState();
 
     useEffect(() => {
         if (!images.length) return;
@@ -27,6 +28,10 @@ const Product = (item) => {
     const addToCart = () => {
         dispatch(addItemToCart(item));
     };
+
+    const addToFavorites = () => {
+        dispatch(addItemToFavorites(item));
+    }
 
     return (
         <section className={styles.product}>
@@ -68,6 +73,7 @@ const Product = (item) => {
                             </div>
                         ))}
                     </div>
+
                 </div>
 
                 <p className={styles.description}>{description}</p>
@@ -80,7 +86,12 @@ const Product = (item) => {
                     >
                         Add to cart
                     </button>
-                    <button className={styles.favourite}>Add to favourites</button>
+
+                    <button className={styles.add}
+                            onClick={addToFavorites}
+                    >
+                        Add to favourites
+                    </button>
                 </div>
 
                 <div className={styles.bottom}>

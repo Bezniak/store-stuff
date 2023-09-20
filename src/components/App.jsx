@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {getCategories} from "../features/categories/categoriesSlice";
 import {getProducts} from "../features/products/productsSlice";
 import UserForm from "./User/UserForm";
+import Terms from "./Terms/Terms";
 
 const App = () => {
 

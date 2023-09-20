@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from '../../styles/Home.module.css';
 import bannerImg from '../../images/banner.png';
+import {ROUTES} from "../../utils/routes";
+import {useNavigate} from "react-router-dom";
 
 const Banner = () => {
+
+    const navigate = useNavigate();
     return (
         <section className={styles.banner}>
             <div className={styles.left}>
@@ -10,7 +14,7 @@ const Banner = () => {
                     NEW YEAR
                     <span>SALE</span>
                 </p>
-                <button className={styles.more}>See more</button>
+                <button onClick={() => navigate(ROUTES.CATEGORY)} className={styles.more}>See more</button>
             </div>
             <div className={styles.right}
                  style={{backgroundImage: `url(${bannerImg})`}}
